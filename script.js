@@ -1,25 +1,29 @@
-// Mifumo ya Xanter MP3 - Msimbo Kamili wa JavaScript
+// ==========================================
+// XANTER MP3 - MSIMBO KAMILI WA JAVASCRIPT
+// ==========================================
 
 let usersList = JSON.parse(localStorage.getItem('xanter_users')) || [];
 let currentUser = JSON.parse(localStorage.getItem('xanter_current_user')) || null;
 
-const genericPopupModal = document.getElementById('genericPopupModal'); // Hakikisha hizi ID zipo kwenye HTML yako
+// Elementi za Popup na Player kutoka kwenye HTML yako
+const genericPopupModal = document.getElementById('genericPopupModal');
 const popupTitle = document.getElementById('popupTitle');
 const popupBodyContent = document.getElementById('popupBodyContent');
 
+// 1. Kazi ya kufunga Popup
 function closePopup() {
     if (genericPopupModal) {
         genericPopupModal.style.display = 'none';
     }
 }
 
-// Mfano wa kazi ya kupandisha picha kwenda Cloudinary (Weka maelezo yako ya Cloudinary hapa kama yapo)
+// 2. Kazi ya kupandisha mafaili kwenda Cloudinary
 async function uploadToCloudinary(file, type = 'image') {
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('upload_preset', 'ml_default'); // Badilisha kama unatumitsha preset nyingine
+    formData.append('upload_preset', 'ml_default'); // Badilisha preset yako kama ni tofauti
 
-    const response = await fetch('https://api.cloudinary.com/v1_1/demo/image/upload', { // Weka Cloud name yako kama ni tofauti na demo
+    const response = await fetch('https://api.cloudinary.com/v1_1/demo/image/upload', { // Badilisha 'demo' kuwa cloud name yako kama unatumia halisi
         method: 'POST',
         body: formData
     });
@@ -31,6 +35,33 @@ async function uploadToCloudinary(file, type = 'image') {
     }
 }
 
+// 3. Kazi ya kucheza wimbo na Auto-Play
+function playSong(songData) {
+    let audioElement = document.getElementById('mainAudioPlayer'); 
+    
+    if (!audioElement) {
+        audioElement = document.createElement('audio');
+        audioElement.id = 'mainAudioPlayer';
+        document.body.appendChild(audioElement);
+    }
+
+    // Weka kiungo cha wimbo
+    audioElement.src = songData.url || songData.fileUrl;
+    
+    // Anza kucheza wimbo moja kwa moja (Auto-Play)
+    audioElement.play().then(() => {
+        console.log("Wimbo umeanza kucheza kiotomatiki.");
+    }).catch(error => {
+        console.log("Auto-play imezuiwa na kivinjari hadi mtumiaji aguse ukurasa:", error);
+    });
+
+    // Sasisha mwonekano wa player kama ipo kazi hiyo kwenye mfumo wako
+    if (typeof updatePlayerUI === 'function') {
+        updatePlayerUI(songData);
+    }
+}
+
+// 4. Kazi ya Kuingia kwenye Akaunti (Login Modal)
 function openLoginModal() {
     popupTitle.textContent = "Login to Your Account";
     popupBodyContent.innerHTML = `
@@ -43,7 +74,7 @@ function openLoginModal() {
             <input type="password" id="loginPassword" placeholder="Enter your password...">
         </div>
         <button class="btn-save-upload" id="submitLoginBtn">Login</button>
-        <div class="auth-switch-text">Don't have an account? <span id="switchToSignup">Sign Up</span></div>
+        <div class="auth-switch-text">Don't have an account? <span id="switchToSignup" style="color: var(--accent-red); cursor: pointer; font-weight: bold;">Sign Up</span></div>
     `;
     genericPopupModal.style.display = 'flex';
 
@@ -68,6 +99,7 @@ function openLoginModal() {
     });
 }
 
+// 5. Kazi ya Kujisajili (Signup Modal) na Jina, Email, Nchi na Picha ya Profaili
 function openSignupModal() {
     popupTitle.textContent = "Create an Account (Sign Up)";
     popupBodyContent.innerHTML = `
@@ -93,7 +125,7 @@ function openSignupModal() {
         </div>
         <button class="btn-save-upload" id="submitSignupBtn">Sign Up</button>
         <div id="signupProgressText" style="text-align: center; font-size: 11px; color: var(--accent-red); display: none; margin-top: 5px;">Creating account, please wait...</div>
-        <div class="auth-switch-text">Already have an account? <span id="switchToLogin">Login</span></div>
+        <div class="auth-switch-text">Already have an account? <span id="switchToLogin" style="color: var(--accent-red); cursor: pointer; font-weight: bold;">Login</span></div>
     `;
     genericPopupModal.style.display = 'flex';
 
@@ -161,6 +193,7 @@ function openSignupModal() {
     });
 }
 
+// 6. Kazi ya Kuangalia Profaili ya Mtumiaji
 function openProfileModal() {
     if (!currentUser) {
         openLoginModal();
