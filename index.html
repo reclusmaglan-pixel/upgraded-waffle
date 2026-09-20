@@ -254,23 +254,29 @@
         .song-list {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
             margin-bottom: 12px;
         }
 
         .song-card {
-            background: transparent;
-            border: none;
-            padding: 6px 4px;
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid var(--border-color);
+            padding: 8px 10px;
+            border-radius: 12px;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            flex-direction: column;
+            gap: 6px;
             transition: background 0.2s ease;
         }
 
         .song-card:hover {
             background: rgba(255, 255, 255, 0.03);
+        }
+
+        .song-main-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .song-left {
@@ -343,6 +349,31 @@
         .btn-download-icon {
             color: var(--accent-red);
             background: rgba(239, 68, 68, 0.08);
+        }
+
+        .social-metrics-bar {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-top: 4px;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .metric-pill {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 10px;
+        }
+
+        .metric-pill i {
+            font-size: 10px;
         }
 
         #audioPlayerBar {
@@ -543,50 +574,67 @@
             font-size: 24px !important;
         }
 
-        /* POPUP MODAL */
+        /* --- DIRISHA LA MODAL LINAJAZA SKRINI NZIMA --- */
         .custom-popup-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 3000;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            max-width: 100% !important;
+            max-height: 100% !important;
+            background: #000000 !important;
+            z-index: 3000 !important;
             display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            flex-direction: column;
+            padding: 20px !important;
+            box-sizing: border-box !important;
+            border-radius: 0 !important;
+            margin: 0 !important;
+            overflow-y: auto !important;
         }
 
         .custom-popup-content {
-            background: #000000;
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            width: 100%;
-            max-width: 380px;
-            padding: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+            background: #000000 !important;
+            border: none !important;
+            border-radius: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            flex: 1 !important;
+            margin: 0 auto !important;
+            padding: 10px 0 !important;
+            box-shadow: none !important;
+            display: flex !important;
+            flex-direction: column !important;
+            box-sizing: border-box !important;
         }
 
         .custom-popup-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding-bottom: 10px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
         }
 
         .custom-popup-header h3 {
-            font-size: 15px;
+            font-size: 17px;
             color: var(--text-main);
+            font-weight: 700;
         }
 
         .custom-popup-close {
-            background: none;
+            background: rgba(255, 255, 255, 0.05);
             border: none;
-            color: var(--text-muted);
-            font-size: 16px;
+            color: var(--text-main);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
             cursor: pointer;
         }
 
@@ -596,16 +644,40 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
+            flex: 1 !important;
+            width: 100% !important;
+            overflow-y: auto !important;
+        }
+
+        .profile-email, 
+        .user-email, 
+        .email-text {
+            word-break: break-all !important;
+            overflow-wrap: break-word !important;
+            white-space: normal !important;
+            font-size: 13px !important;
+            display: block !important;
         }
 
         .popup-option-item {
-            padding: 10px;
-            background: rgba(255,255,255,0.03);
-            border-radius: 8px;
+            padding: 16px 18px;
+            background: rgba(255,255,255,0.015);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             color: var(--text-main);
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .popup-option-item:hover {
+            background: rgba(239, 68, 68, 0.08);
+            border-color: rgba(239, 68, 68, 0.3);
+            color: var(--accent-red);
         }
 
         .upload-form-group {
@@ -623,13 +695,14 @@
 
         .upload-form-group input[type="text"],
         .upload-form-group input[type="email"],
-        .upload-form-group input[type="password"] {
+        .upload-form-group input[type="password"],
+        .upload-form-group textarea {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-color);
-            padding: 8px 10px;
-            border-radius: 8px;
+            padding: 10px 12px;
+            border-radius: 10px;
             color: var(--text-main);
-            font-size: 12px;
+            font-size: 13px;
             outline: none;
         }
 
@@ -642,11 +715,11 @@
             background: var(--accent-red);
             color: #fff;
             border: none;
-            padding: 10px;
-            border-radius: 8px;
+            padding: 12px;
+            border-radius: 10px;
             font-weight: bold;
             cursor: pointer;
-            font-size: 13px;
+            font-size: 14px;
             margin-top: 5px;
         }
 
@@ -690,6 +763,9 @@
         </div>
 
         <div id="localSectionWrapper" style="display: none;">
+            <div class="section-header">
+                <div class="section-title">My Uploaded Songs</div>
+            </div>
             <div class="song-list" id="localSongsList"></div>
         </div>
 
@@ -779,19 +855,28 @@
     <audio id="mainAudioElement"></audio>
 
     <script>
-        // Cloudinary Configuration
         const CLOUD_NAME = 'x17d7jsh'; 
         const UPLOAD_PRESET = 'xanter_preset';
 
         document.databaseTracks = [];
 
+        function badilishaEmailKuwaJina(email) {
+            if (!email) return 'Mtumiaji';
+            let sehemuYaJina = email.split('@')[0];
+            sehemuYaJina = sehemuYaJina.replace(/[0-9_.]/g, ' ').trim();
+            return sehemuYaJina.charAt(0).toUpperCase() + sehemuYaJina.slice(1);
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
             let globalTracks = [];
             let localUploadedTracks = JSON.parse(localStorage.getItem('xanter_cloud_uploads')) || [];
 
-            // Account management initializations (Using Email)
             let usersList = JSON.parse(localStorage.getItem('xanter_users')) || [];
             let currentUser = JSON.parse(localStorage.getItem('xanter_current_user')) || null;
+            let userDownloads = JSON.parse(localStorage.getItem('xanter_downloads')) || [];
+            let userPlaylists = JSON.parse(localStorage.getItem('xanter_playlists')) || [];
+            
+            let songMetrics = JSON.parse(localStorage.getItem('xanter_metrics')) || {};
 
             const suggestionDictionary = ["Acoustic", "Bensound", "Pop Music", "Rock & Roll", "Piano Instrumentals", "Electronic", "Remix Beats"];
             
@@ -907,12 +992,15 @@
                             coverUrl = await uploadToCloudinary(coverInput.files[0], 'image');
                         }
 
+                        const songId = 'song_' + Date.now();
                         const newTrackObj = {
+                            id: songId,
                             title: titleVal,
-                            artist: artistVal || currentUser.email.split('@')[0],
+                            artist: artistVal || badilishaEmailKuwaJina(currentUser.email),
                             thumb: coverUrl,
                             audioUrl: audioUrl,
-                            duration: "3:30"
+                            duration: "3:30",
+                            uploaderEmail: currentUser.email
                         };
 
                         localUploadedTracks.unshift(newTrackObj);
@@ -933,7 +1021,6 @@
 
             uploadModalBtn.addEventListener('click', openUploadForm);
 
-            // Account Management Modals (Signup, Login, Profile, Logout using Email)
             function openLoginModal() {
                 popupTitle.textContent = "Login to Your Account";
                 popupBodyContent.innerHTML = `
@@ -1029,15 +1116,34 @@
                     return;
                 }
 
-                popupTitle.textContent = "User Profile";
+                const jinaLaMtumiajiPekee = badilishaEmailKuwaJina(currentUser.email);
+
+                popupTitle.textContent = "My Profile";
                 popupBodyContent.innerHTML = `
-                    <div style="text-align: center; margin-bottom: 5px;">
-                        <i class="fa-solid fa-circle-user" style="font-size: 45px; color: var(--accent-red);"></i>
+                    <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 5px;">
+                        <i class="fa-solid fa-circle-user" style="font-size: 42px; color: var(--accent-red);"></i>
+                        <div style="overflow: hidden;">
+                            <h4 style="font-size: 15px; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 700;">${jinaLaMtumiajiPekee}</h4>
+                            <p class="email-text" style="font-size: 11px; color: var(--text-muted);">${currentUser.email}</p>
+                        </div>
                     </div>
-                    <div class="popup-option-item"><span>Email</span> <b style="font-size: 11px;">${currentUser.email}</b></div>
-                    <div class="popup-option-item"><span>Cloud Uploads</span> <b>${localUploadedTracks.length} Songs</b></div>
-                    <div class="popup-option-item"><span>Status</span> <span style="color: #22c55e;">Logged In</span></div>
-                    <button class="btn-save-upload" id="logoutBtn" style="background: #3f3f46; margin-top: 10px;">Logout</button>
+
+                    <div class="popup-option-item" onclick="openSubSectionList('downloads')">
+                        <div style="display: flex; align-items: center; gap: 12px;"><i class="fa-solid fa-download" style="color: #f59e0b; font-size: 16px;"></i> Downloads</div>
+                        <i class="fa-solid fa-chevron-right" style="font-size: 12px; color: var(--text-muted);"></i>
+                    </div>
+
+                    <div class="popup-option-item" onclick="openSubSectionList('playlists')">
+                        <div style="display: flex; align-items: center; gap: 12px;"><i class="fa-solid fa-list-ul" style="color: #3b82f6; font-size: 16px;"></i> Playlists</div>
+                        <i class="fa-solid fa-chevron-right" style="font-size: 12px; color: var(--text-muted);"></i>
+                    </div>
+
+                    <div class="popup-option-item" onclick="openSubSectionList('uploads')">
+                        <div style="display: flex; align-items: center; gap: 12px;"><i class="fa-solid fa-cloud-arrow-up" style="color: #10b981; font-size: 16px;"></i> Uploads</div>
+                        <i class="fa-solid fa-chevron-right" style="font-size: 12px; color: var(--text-muted);"></i>
+                    </div>
+
+                    <button class="btn-save-upload" id="logoutBtn" style="background: rgba(255,255,255,0.05); color: var(--text-main); border: 1px solid var(--border-color); margin-top: 15px;">Logout</button>
                 `;
                 genericPopupModal.style.display = 'flex';
 
@@ -1048,6 +1154,58 @@
                     closePopup();
                 });
             }
+
+            window.openSubSectionList = function(type) {
+                let title = "";
+                let data = [];
+
+                if (type === 'downloads') {
+                    title = "My Downloads";
+                    data = userDownloads.filter(t => t.userEmail === currentUser.email);
+                } else if (type === 'playlists') {
+                    title = "My Playlists";
+                    data = userPlaylists.filter(t => t.userEmail === currentUser.email);
+                } else if (type === 'uploads') {
+                    title = "My Uploads";
+                    data = localUploadedTracks.filter(t => t.uploaderEmail === currentUser.email);
+                }
+
+                popupTitle.textContent = title;
+                popupBodyContent.innerHTML = `
+                    <button onclick="openProfileModal()" class="back-btn" style="background:none; border:none; color:var(--accent-red); font-size:13px; cursor:pointer; margin-bottom:12px; text-align:left; display:inline-flex; align-items:center; gap:8px; font-weight:600;">
+                        <i class="fa-solid fa-arrow-left"></i> Back to Profile
+                    </button>
+                    <div class="song-list" style="max-height: 65vh; overflow-y: auto;">
+                        ${data.length === 0 ? '<div style="text-align:center; color:var(--text-muted); padding:30px;">Hakuna kumbukumbu hapa bado.</div>' : 
+                        data.map(t => {
+                            const trackKey = t.id || t.audioUrl;
+                            const metric = songMetrics[trackKey] || { plays: 0, downloads: 0 };
+                            return `
+                                <div class="song-card">
+                                    <div class="song-main-row">
+                                        <div class="song-left" onclick="playSong('${t.audioUrl}', '${t.title}', '${t.artist}', '${t.thumb}'); closePopup();">
+                                            <img src="${t.thumb}" class="song-thumb">
+                                            <div class="song-info">
+                                                <h4>${t.title}</h4>
+                                                <p>${t.artist}</p>
+                                            </div>
+                                        </div>
+                                        ${type === 'uploads' ? `<button class="btn-action btn-download-icon" onclick="deleteLocalTrackById('${t.id}')" title="Delete Song"><i class="fa-solid fa-trash"></i></button>` : ''}
+                                    </div>
+                                    <div class="social-metrics-bar">
+                                        <div class="metric-pill">
+                                            <i class="fa-solid fa-headphones" style="color: var(--accent-red);"></i> <span id="plays-${trackKey}">${metric.plays}</span> Plays
+                                        </div>
+                                        <div class="metric-pill">
+                                            <i class="fa-solid fa-download" style="color: #3b82f6;"></i> <span id="downloads-${trackKey}">${metric.downloads}</span> Downloads
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+            };
 
             profileBtn.addEventListener('click', () => {
                 if (currentUser) {
@@ -1062,9 +1220,19 @@
             };
 
             closePopupBtn.addEventListener('click', closePopup);
-            genericPopupModal.addEventListener('click', (e) => {
-                if (e.target === genericPopupModal) closePopup();
-            });
+
+            function incrementMetric(trackKey, type) {
+                if (!songMetrics[trackKey]) {
+                    songMetrics[trackKey] = { plays: 0, downloads: 0 };
+                }
+                songMetrics[trackKey][type] += 1;
+                localStorage.setItem('xanter_metrics', JSON.stringify(songMetrics));
+
+                const spanElem = document.getElementById(`${type}-${trackKey}`);
+                if (spanElem) {
+                    spanElem.textContent = songMetrics[trackKey][type];
+                }
+            }
 
             function renderLocalUploads() {
                 const localWrapper = document.getElementById('localSectionWrapper');
@@ -1077,19 +1245,32 @@
                 }
 
                 localWrapper.style.display = 'block';
-                localUploadedTracks.forEach((track, index) => {
+                localUploadedTracks.forEach((track) => {
+                    const trackKey = track.id || track.audioUrl;
+                    const metric = songMetrics[trackKey] || { plays: 0, downloads: 0 };
+
                     localListContainer.innerHTML += `
                         <div class="song-card">
-                            <div class="song-left open-full-player-trigger" data-url="${track.audioUrl}" data-title="${track.title}" data-artist="${track.artist}" data-thumb="${track.thumb}">
-                                <img src="${track.thumb}" class="song-thumb">
-                                <div class="song-info">
-                                    <h4>${track.title}</h4>
-                                    <p>${track.artist} • ${track.duration}</p>
+                            <div class="song-main-row">
+                                <div class="song-left open-full-player-trigger" data-url="${track.audioUrl}" data-title="${track.title}" data-artist="${track.artist}" data-thumb="${track.thumb}" data-key="${trackKey}">
+                                    <img src="${track.thumb}" class="song-thumb">
+                                    <div class="song-info">
+                                        <h4>${track.title}</h4>
+                                        <p>${track.artist} • ${track.duration}</p>
+                                    </div>
+                                </div>
+                                <div class="song-actions">
+                                    <button class="btn-action play-btn" data-url="${track.audioUrl}" data-title="${track.title}" data-artist="${track.artist}" data-thumb="${track.thumb}" data-key="${trackKey}"><i class="fa-solid fa-play"></i></button>
+                                    <button class="btn-action btn-download-icon" onclick="deleteLocalTrackById('${track.id}')" title="Delete Song"><i class="fa-solid fa-trash"></i></button>
                                 </div>
                             </div>
-                            <div class="song-actions">
-                                <button class="btn-action play-btn" data-url="${track.audioUrl}" data-title="${track.title}" data-artist="${track.artist}" data-thumb="${track.thumb}"><i class="fa-solid fa-play"></i></button>
-                                <button class="btn-action btn-download-icon" onclick="deleteLocalTrack(${index})" title="Delete Song"><i class="fa-solid fa-trash"></i></button>
+                            <div class="social-metrics-bar">
+                                <div class="metric-pill">
+                                    <i class="fa-solid fa-headphones" style="color: var(--accent-red);"></i> <span id="plays-${trackKey}">${metric.plays}</span> Plays
+                                </div>
+                                <div class="metric-pill">
+                                    <i class="fa-solid fa-download" style="color: #3b82f6;"></i> <span id="downloads-${trackKey}">${metric.downloads}</span> Downloads
+                                </div>
                             </div>
                         </div>
                     `;
@@ -1097,9 +1278,9 @@
                 bindPlayerEvents();
             }
 
-            window.deleteLocalTrack = function(index) {
+            window.deleteLocalTrackById = function(id) {
                 if (confirm("Are you sure you want to delete this song?")) {
-                    localUploadedTracks.splice(index, 1);
+                    localUploadedTracks = localUploadedTracks.filter(t => t.id !== id);
                     localStorage.setItem('xanter_cloud_uploads', JSON.stringify(localUploadedTracks));
                     renderLocalUploads();
                 }
@@ -1107,9 +1288,12 @@
 
             let currentPlayingUrl = "";
             let currentTrackData = null;
+            let currentTrackKey = "";
 
-            function playSong(url, title, artist, thumb) {
+            function playSong(url, title, artist, thumb, trackKey = "") {
                 currentTrackData = { url, title, artist, thumb };
+                currentTrackKey = trackKey || url;
+
                 if (currentPlayingUrl === url) {
                     if (audioElem.paused) { audioElem.play(); updatePlayState(true); }
                     else { audioElem.pause(); updatePlayState(false); }
@@ -1129,10 +1313,15 @@
 
                     playerBar.style.display = 'flex';
                     updatePlayState(true);
+
+                    incrementMetric(currentTrackKey, 'plays');
                 }
             }
 
-            async function downloadSongFile(url, filename, buttonElement) {
+            async function downloadSongFile(url, filename, buttonElement, trackInfo = null, trackKey = "") {
+                const key = trackKey || url;
+                incrementMetric(key, 'downloads');
+
                 try {
                     const response = await fetch(url);
                     const blob = await response.blob();
@@ -1144,6 +1333,13 @@
                     a.click();
                     window.URL.revokeObjectURL(blobUrl);
                     document.body.removeChild(a);
+
+                    if (currentUser && trackInfo) {
+                        if (!userDownloads.some(d => d.audioUrl === trackInfo.audioUrl && d.userEmail === currentUser.email)) {
+                            userDownloads.push({ ...trackInfo, userEmail: currentUser.email });
+                            localStorage.setItem('xanter_downloads', JSON.stringify(userDownloads));
+                        }
+                    }
                 } catch (e) {
                     const a = document.createElement('a');
                     a.href = url;
@@ -1152,12 +1348,19 @@
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
+
+                    if (currentUser && trackInfo) {
+                        if (!userDownloads.some(d => d.audioUrl === trackInfo.audioUrl && d.userEmail === currentUser.email)) {
+                            userDownloads.push({ ...trackInfo, userEmail: currentUser.email });
+                            localStorage.setItem('xanter_downloads', JSON.stringify(userDownloads));
+                        }
+                    }
                 }
             }
 
             fullModalDownloadBtn.addEventListener('click', (e) => {
                 if (currentTrackData) {
-                    downloadSongFile(currentTrackData.url, `${currentTrackData.title}.mp3`, e.currentTarget);
+                    downloadSongFile(currentTrackData.url, `${currentTrackData.title}.mp3`, e.currentTarget, currentTrackData, currentTrackKey);
                 }
             });
 
@@ -1240,6 +1443,7 @@
                     const data = await res.json();
                     if (data && data.results) {
                         return data.results.map(t => ({
+                            id: 'jam_' + t.id,
                             title: t.name,
                             artist: t.artist_name,
                             thumb: t.image || 'https://picsum.photos/seed/' + t.id + '/300',
@@ -1258,6 +1462,7 @@
                     const data = await res.json();
                     if (data && data.data) {
                         return data.data.map(t => ({
+                            id: 'aud_' + t.id,
                             title: t.title,
                             artist: t.user.name,
                             thumb: t.artwork ? (t.artwork['480x480'] || Object.values(t.artwork)[0]) : 'https://picsum.photos/seed/' + t.id + '/300',
@@ -1276,6 +1481,7 @@
                     const data = await res.json();
                     if (data && data.response && data.response.docs) {
                         return data.response.docs.map(doc => ({
+                            id: 'arc_' + doc.identifier,
                             title: doc.title || "Archive Audio",
                             artist: doc.creator || "Unknown Artist",
                             thumb: 'https://picsum.photos/seed/' + doc.identifier + '/300',
@@ -1298,8 +1504,8 @@
                 globalTracks = combinedTracks;
                 if (globalTracks.length === 0) {
                     globalTracks = [
-                        { title: "Acoustic Breeze", artist: "Bensound", thumb: "https://picsum.photos/seed/breeze/300", audioUrl: "https://www.soundhelix.com/examples/mp3/Soundhelix-Song-1.mp3", duration: "6:12" },
-                        { title: "Creative Minds", artist: "Bensound Royalty", thumb: "https://picsum.photos/seed/minds/300", audioUrl: "https://www.soundhelix.com/examples/mp3/Soundhelix-Song-2.mp3", duration: "7:05" }
+                        { id: 'def_1', title: "Acoustic Breeze", artist: "Bensound", thumb: "https://picsum.photos/seed/breeze/300", audioUrl: "https://www.soundhelix.com/examples/mp3/Soundhelix-Song-1.mp3", duration: "6:12" },
+                        { id: 'def_2', title: "Creative Minds", artist: "Bensound Royalty", thumb: "https://picsum.photos/seed/minds/300", audioUrl: "https://www.soundhelix.com/examples/mp3/Soundhelix-Song-2.mp3", duration: "7:05" }
                     ];
                 }
 
@@ -1351,18 +1557,32 @@
             }
 
             function createSongCardHtml(track) {
+                const escapedTrack = JSON.stringify(track).replace(/"/g, '&quot;');
+                const trackKey = track.id || track.audioUrl;
+                const metric = songMetrics[trackKey] || { plays: 0, downloads: 0 };
+
                 return `
                     <div class="song-card">
-                        <div class="song-left open-full-player-trigger" data-url="${track.audioUrl}" data-title="${track.title}" data-artist="${track.artist}" data-thumb="${track.thumb}">
-                            <img src="${track.thumb}" class="song-thumb">
-                            <div class="song-info">
-                                <h4>${track.title}</h4>
-                                <p>${track.artist} • ${track.duration}</p>
+                        <div class="song-main-row">
+                            <div class="song-left open-full-player-trigger" data-url="${track.audioUrl}" data-title="${track.title}" data-artist="${track.artist}" data-thumb="${track.thumb}" data-key="${trackKey}">
+                                <img src="${track.thumb}" class="song-thumb">
+                                <div class="song-info">
+                                    <h4>${track.title}</h4>
+                                    <p>${track.artist} • ${track.duration}</p>
+                                </div>
+                            </div>
+                            <div class="song-actions">
+                                <button class="btn-action play-btn" data-url="${track.audioUrl}" data-title="${track.title}" data-artist="${track.artist}" data-thumb="${track.thumb}" data-key="${trackKey}"><i class="fa-solid fa-play"></i></button>
+                                <button class="btn-action btn-download-icon download-btn" onclick='downloadSongFile("${track.audioUrl}", "${track.title}.mp3", this, ${escapedTrack}, "${trackKey}")' title="Download"><i class="fa-solid fa-download"></i></button>
                             </div>
                         </div>
-                        <div class="song-actions">
-                            <button class="btn-action play-btn" data-url="${track.audioUrl}" data-title="${track.title}" data-artist="${track.artist}" data-thumb="${track.thumb}"><i class="fa-solid fa-play"></i></button>
-                            <button class="btn-action btn-download-icon download-btn" onclick="downloadSongFile('${track.audioUrl}', '${track.title}.mp3')" title="Download"><i class="fa-solid fa-download"></i></button>
+                        <div class="social-metrics-bar">
+                            <div class="metric-pill">
+                                <i class="fa-solid fa-headphones" style="color: var(--accent-red);"></i> <span id="plays-${trackKey}">${metric.plays}</span> Plays
+                            </div>
+                            <div class="metric-pill">
+                                <i class="fa-solid fa-download" style="color: #3b82f6;"></i> <span id="downloads-${trackKey}">${metric.downloads}</span> Downloads
+                            </div>
                         </div>
                     </div>
                 `;
@@ -1373,14 +1593,14 @@
                     btn.addEventListener('click', (e) => {
                         e.stopPropagation();
                         const b = e.currentTarget;
-                        playSong(b.dataset.url, b.dataset.title, b.dataset.artist, b.dataset.thumb);
+                        playSong(b.dataset.url, b.dataset.title, b.dataset.artist, b.dataset.thumb, b.dataset.key);
                     });
                 });
 
                 document.querySelectorAll('.open-full-player-trigger').forEach(item => {
                     item.addEventListener('click', (e) => {
                         const b = e.currentTarget;
-                        playSong(b.dataset.url, b.dataset.title, b.dataset.artist, b.dataset.thumb);
+                        playSong(b.dataset.url, b.dataset.title, b.dataset.artist, b.dataset.thumb, b.dataset.key);
                         fullPlayerModal.style.display = 'flex';
                     });
                 });
@@ -1420,7 +1640,7 @@
                             searchInput.value = m.text;
                             searchSuggestions.style.display = 'none';
                             if (m.type === 'song' && m.data.audioUrl) {
-                                playSong(m.data.audioUrl, m.data.title, m.data.artist, m.data.thumb);
+                                playSong(m.data.audioUrl, m.data.title, m.data.artist, m.data.thumb, m.data.id || m.data.audioUrl);
                                 fullPlayerModal.style.display = 'flex';
                             } else {
                                 fetchAllApis(m.text);
